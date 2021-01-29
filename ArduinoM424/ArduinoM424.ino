@@ -21,8 +21,7 @@ int queue[] = {0, 0, 0, 0, 0, 0};
 int qSize = 6;
 unsigned long targetTime = millis() + 10000;
 
-int light_configs [7][3] = {{0, 255, 15},{68, 187, 85},{145, 110, 15}, {32, 223, 45}, {8, 247, 150}, {2, 253, 135}, {129, 126, 105}};
-
+int light_configs [7][3] = {{0, 255, 240}, {34, 221, 170}, {137, 118, 240}, {4, 251, 180}, {16, 239, 105}, {64, 191, 225}, {129, 126, 150}};
 
 
 BYTES_VAL_T pinValues;
@@ -73,11 +72,9 @@ void eval_pin_values()
     for(int i = 0; i < DATA_WIDTH; i++)
     {
         if((pinValues >> i) & 1 ) {
-          Serial.print("1");
+          Serial.print("INPUT: ");
+          Serial.println(i);
           mapInputToQueue(i);
-		  
-        } else {
-          Serial.print("0");
         }
         
     }
@@ -87,14 +84,15 @@ void eval_pin_values()
 
 void display_led(int arrIndex)
 {
+  Serial.print("Showing Config: ");
+  Serial.println(arrIndex);
   
   digitalWrite(latchPinOUT, LOW);
   // shift out the bits:
   shiftOut(dataPinOUT, clockPinOUT, MSBFIRST,  light_configs[arrIndex][2]); // REG 3.
   shiftOut(dataPinOUT, clockPinOUT, MSBFIRST,  light_configs[arrIndex][1]); // REG 2.
-  shiftOut(dataPinOUT, clockPinOUT, MSBFIRST,  light_configs[arrIndex][0]); // REG 1.
-  
-  digitalWrite(latchPin, HIGH);
+  shiftOut(dataPinOUT, clockPinOUT, MSBFIRST,  light_configs[arrIndex][0]); // REG 1.  
+  digitalWrite(latchPinOUT, HIGH);
   
 }
 
@@ -122,7 +120,8 @@ void mapInputToQueue(int i)
 
 void addQ(int val)
 {
-  
+  Serial.print("Q: ");
+  Serial.println(val);
   for(int i = 0; i < qSize; i++) {
     
 	// Exit if already in Q exists
@@ -190,7 +189,7 @@ void setup()
     */
     pinValues = read_shift_regs();
     oldPinValues = pinValues;
-	display_led(0);
+	  display_led(0);
 }
 
 void loop()
@@ -198,9 +197,7 @@ void loop()
 
   if(millis() > targetTime) {
     
-	display_led(popQ());
-    Serial.println("Ampeln UMSCHALTEN");
-    
+	  display_led(popQ());    
     targetTime = millis() + 10000;
     
   }
@@ -214,41 +211,5 @@ void loop()
 		oldPinValues = pinValues;
 	}
     
-    
-    
-
     delay(1000);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
