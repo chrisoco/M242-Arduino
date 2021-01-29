@@ -21,7 +21,7 @@ int queue[] = {0, 0, 0, 0, 0, 0};
 int qSize = 6;
 unsigned long targetTime = millis() + 10000;
 
-int light_configs [7][3] = {{0, 255, 240}, {34, 221, 170}, {137, 118, 240}, {4, 251, 180}, {16, 239, 105}, {64, 191, 225}, {129, 126, 150}};
+int light_configs [7][3] = {{0, 255, 240}, {34, 221, 240}, {137, 118, 240}, {4, 251, 180}, {16, 239, 105}, {64, 191, 225}, {129, 126, 150}};
 
 
 BYTES_VAL_T pinValues;
@@ -159,10 +159,11 @@ int popQ()
 
 void printQ()
 {
+  Serial.print("Current Queue [");
   for(int i = 0; i < qSize; i++) {
    Serial.print(queue[i]);     
   }
-  Serial.println("."); 
+  Serial.println("}"); 
 }
 
 
@@ -199,7 +200,7 @@ void loop()
     
 	  display_led(popQ());    
     targetTime = millis() + 10000;
-    
+    printQ();
   }
   
   
