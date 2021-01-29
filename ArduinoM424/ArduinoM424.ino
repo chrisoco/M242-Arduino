@@ -1,18 +1,7 @@
-/* How many shift register chips are daisy-chained.
-*/
-#define NUMBER_OF_SHIFT_CHIPS   2
 
 /* Width of data (how many ext lines).
 */
-#define DATA_WIDTH   NUMBER_OF_SHIFT_CHIPS * 8
-
-/* Width of pulse to trigger the shift register to read and latch.
-*/
-#define PULSE_WIDTH_USEC   5
-
-/* Optional delay between shift register reads.
-*/
-#define POLL_DELAY_MSEC   10
+#define DATA_WIDTH   16
 
 #define BYTES_VAL_T unsigned int
 
@@ -32,7 +21,12 @@ int queue[] = {0, 0, 0, 0, 0, 0};
 int qSize = 6;
 unsigned long targetTime = millis() + 10000;
 
+int light_configs [7][3] = {{0, 255, 15},{68, 187, 85},{145, 110, 15}, {32, 223, 45}, {8, 247, 150}, {2, 253, 135}, {129, 126, 105}};
+
+
+
 BYTES_VAL_T pinValues;
+BYTES_VAL_T oldPinValues;
 
 /* This function is essentially a "shift-in" routine reading the
  * serial Data from the shift register chips and representing
@@ -47,7 +41,7 @@ BYTES_VAL_T read_shift_regs()
     */
     digitalWrite(clockEnablePin, HIGH);
     digitalWrite(ploadPin, LOW);
-    delayMicroseconds(PULSE_WIDTH_USEC);
+    delayMicroseconds(5);
     digitalWrite(ploadPin, HIGH);
     digitalWrite(clockEnablePin, LOW);
 
@@ -65,7 +59,7 @@ BYTES_VAL_T read_shift_regs()
         /* Pulse the Clock (rising edge shifts the next bit).
         */
         digitalWrite(clockPin, HIGH);
-        delayMicroseconds(PULSE_WIDTH_USEC);
+        delayMicroseconds(5);
         digitalWrite(clockPin, LOW);
     }
 
@@ -74,13 +68,14 @@ BYTES_VAL_T read_shift_regs()
 
 /* Dump the list of zones along with their current status.
 */
-void display_pin_values()
+void eval_pin_values()
 {
     for(int i = 0; i < DATA_WIDTH; i++)
     {
         if((pinValues >> i) & 1 ) {
           Serial.print("1");
-          /* DOSHIT */
+          mapInputToQueue(i);
+		  
         } else {
           Serial.print("0");
         }
@@ -90,14 +85,14 @@ void display_pin_values()
     Serial.print("\r\n");
 }
 
-void display_led(int reg1, int reg2, int reg3)
+void display_led(int arrIndex)
 {
   
   digitalWrite(latchPinOUT, LOW);
   // shift out the bits:
-  shiftOut(dataPinOUT, clockPinOUT, MSBFIRST,  58); // REG 3.
-  shiftOut(dataPinOUT, clockPinOUT, MSBFIRST, 187); // REG 2.
-  shiftOut(dataPinOUT, clockPinOUT, MSBFIRST,  68); // REG 1.
+  shiftOut(dataPinOUT, clockPinOUT, MSBFIRST,  light_configs[arrIndex][2]); // REG 3.
+  shiftOut(dataPinOUT, clockPinOUT, MSBFIRST,  light_configs[arrIndex][1]); // REG 2.
+  shiftOut(dataPinOUT, clockPinOUT, MSBFIRST,  light_configs[arrIndex][0]); // REG 1.
   
   digitalWrite(latchPin, HIGH);
   
@@ -105,28 +100,24 @@ void display_led(int reg1, int reg2, int reg3)
 
 void mapInputToQueue(int i)
 {
-  switch (i) {
-    case 0:
-    case 1:
-    case 3:
-      Serial.println("0");
-      // addQ(1);
-      break;
-    case 4:
-      Serial.println("1");
-      break;
-    case 5:
-      Serial.println("2");
-      break;
-    case 6:
-      Serial.println("3");
-      break;
-  }
-}
-
-void mapQueueToConfig()
-{
-  // Another switch to do Shiat.
+	switch (i) {
+		case  1:
+		case  5: addQ(1); break;
+		case  0:
+		case  3:
+		case  7: addQ(2); break;
+		case  2:
+		case 12:
+		case 13: addQ(3); break;
+		case  4:
+		case  8:
+		case  9:
+		case 14:
+		case 15: addQ(4); break;
+		case  6: addQ(5); break;
+		case 10:
+		case 11: addQ(6); break;
+	}
 }
 
 void addQ(int val)
@@ -134,14 +125,14 @@ void addQ(int val)
   
   for(int i = 0; i < qSize; i++) {
     
+	// Exit if already in Q exists
     if(queue[i] == val) { 
-      // Serial.println("RETURN"); 
       break; 
     }
     
+	// ADD
     if(queue[i] == 0) {
       queue[i] = val;
-      // Serial.println("ADDED"); 
       break;
     }
     
@@ -198,8 +189,8 @@ void setup()
     /* Read in and display the pin states at startup.
     */
     pinValues = read_shift_regs();
-    display_pin_values();
     oldPinValues = pinValues;
+	display_led(0);
 }
 
 void loop()
@@ -207,19 +198,57 @@ void loop()
 
   if(millis() > targetTime) {
     
-    // popQ() ez Clap
-     Serial.println("Ampeln UMSCHALTEN");
+	display_led(popQ());
+    Serial.println("Ampeln UMSCHALTEN");
     
     targetTime = millis() + 10000;
     
   }
   
-/* Read the state of all zones.
-*/
-    read_shift_regs();
+  
+    pinValues = read_shift_regs();
+	
+	if(pinValues != oldPinValues) {
+		
+		eval_pin_values();
+		oldPinValues = pinValues;
+	}
     
-    display_pin_values();
-    oldPinValues = pinValues;
+    
+    
 
     delay(1000);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
