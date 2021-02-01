@@ -1,6 +1,6 @@
-﻿-[ ] Q & A Document -> Frage, Antwort, Datum, Person mit Antwort.
+﻿-[x] Q & A Document -> Frage, Antwort, Datum, Person mit Antwort.
 -[ ] Konzept -> Erklären wie die Lösung des Problems angehen -> Zustandsdiagramme, UseCase, Flussdiagramm, Beschreibung Lösungsansätze, Verwendete HW
--[ ] Entscheidungsdokument -> mind. 4 Entscheidungen Dokumentiert. (Wer Wie Was Weshalb)
+-[x] Entscheidungsdokument -> mind. 4 Entscheidungen Dokumentiert. (Wer Wie Was Weshalb)
 -[ ] SourceCode in Doku
 -[ ] Kontrolle auf Anforderungen
 -[ ] Testfallspezifikation + Testfälle -> ID, getestete Anforderung, Desc, Voraussetzung, Eingabe, Ausgabe, Name Tester, Datum, Erfolg T/F?
