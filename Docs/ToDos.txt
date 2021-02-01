@@ -1,5 +1,5 @@
 ﻿-[x] Q & A Document -> Frage, Antwort, Datum, Person mit Antwort.
--[ ] Konzept -> Erklären wie die Lösung des Problems angehen -> Zustandsdiagramme, UseCase, Flussdiagramm, Beschreibung Lösungsansätze, Verwendete HW
+-[x] Konzept -> Erklären wie die Lösung des Problems angehen -> Zustandsdiagramme, UseCase, Flussdiagramm, Beschreibung Lösungsansätze, Verwendete HW
 -[x] Entscheidungsdokument -> mind. 4 Entscheidungen Dokumentiert. (Wer Wie Was Weshalb)
 -[ ] SourceCode in Doku
 -[ ] Kontrolle auf Anforderungen
@@ -13,12 +13,12 @@
 
 ---------------------------------------------------
 
--[ ] I Q&A Document
+-[x] I Q&A Document
 -[ ] I Konzept
--[ ] P Tätigkeitsliste
--[ ] E Entscheidungsdokument
+-[x] P Tätigkeitsliste
+-[x] E Entscheidungsdokument
 -[ ] R Programmcode
--[ ] R Funktion
+-[x] R Funktion
 -[ ] K Testfallspezifikation
 -[ ] K Testprotokoll
 -[ ] A Auswertungsdokument
