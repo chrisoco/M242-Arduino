@@ -6,7 +6,7 @@
 -[ ] Testfallspezifikation + Testfälle -> ID, getestete Anforderung, Desc, Voraussetzung, Eingabe, Ausgabe, Name Tester, Datum, Erfolg T/F?
 -[ ] Auswertung des Projekts was war gut, was schlecht?
 -[ ] Auswertung Projektablauf
--[ ]PRÄSENTATION?!
+-[x]PRÄSENTATION?!
 -[ ] Arbeitsjournal -> Datum, Zeit, konkrete Arbeitsschritte, Bemerkung
 -[ ] Management-Summary
 
@@ -23,7 +23,7 @@
 -[ ] K Testprotokoll
 -[ ] A Auswertungsdokument
 ----------------------------
--[ ] Präsentation
+-[x] Präsentation
 -[ ] Arbeitsjournal
 
 
