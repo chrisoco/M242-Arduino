@@ -1,30 +1,30 @@
 ﻿-[x] Q & A Document -> Frage, Antwort, Datum, Person mit Antwort.
 -[x] Konzept -> Erklären wie die Lösung des Problems angehen -> Zustandsdiagramme, UseCase, Flussdiagramm, Beschreibung Lösungsansätze, Verwendete HW
 -[x] Entscheidungsdokument -> mind. 4 Entscheidungen Dokumentiert. (Wer Wie Was Weshalb)
--[ ] SourceCode in Doku
--[ ] Kontrolle auf Anforderungen
--[ ] Testfallspezifikation + Testfälle -> ID, getestete Anforderung, Desc, Voraussetzung, Eingabe, Ausgabe, Name Tester, Datum, Erfolg T/F?
--[ ] Auswertung des Projekts was war gut, was schlecht?
--[ ] Auswertung Projektablauf
+-[x] SourceCode in Doku
+-[x] Kontrolle auf Anforderungen
+-[x] Testfallspezifikation + Testfälle -> ID, getestete Anforderung, Desc, Voraussetzung, Eingabe, Ausgabe, Name Tester, Datum, Erfolg T/F?
+-[x] Auswertung des Projekts was war gut, was schlecht?
+-[x] Auswertung Projektablauf
 -[x]PRÄSENTATION?!
--[ ] Arbeitsjournal -> Datum, Zeit, konkrete Arbeitsschritte, Bemerkung
--[ ] Management-Summary
+-[x] Arbeitsjournal -> Datum, Zeit, konkrete Arbeitsschritte, Bemerkung
+-[x] Management-Summary
 
 
 ---------------------------------------------------
 
 -[x] I Q&A Document
--[ ] I Konzept
+-[x] I Konzept
 -[x] P Tätigkeitsliste
 -[x] E Entscheidungsdokument
--[ ] R Programmcode
+-[x] R Programmcode
 -[x] R Funktion
--[ ] K Testfallspezifikation
--[ ] K Testprotokoll
--[ ] A Auswertungsdokument
+-[x] K Testfallspezifikation
+-[x] K Testprotokoll
+-[x] A Auswertungsdokument
 ----------------------------
 -[x] Präsentation
--[ ] Arbeitsjournal
+-[x] Arbeitsjournal
 
 
 -------------------------------------------------------
