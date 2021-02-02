@@ -13,9 +13,9 @@ int dataPin         = 6; 	// Connects to the Q7 pin
 int clockPin        = 7; 	// Connects to the Clock pin
 
 // Shift Register Output (595)
-int latchPinOUT =  8;      	//Pin connected to ST_CP
-int clockPinOUT = 12;      	//Pin connected to SH_CP
-int dataPinOUT  = 11;      	//Pin connected to DS
+int latchPinOUT =  8;      	// Pin connected to ST_CP
+int clockPinOUT = 12;      	// Pin connected to SH_CP
+int dataPinOUT  = 11;      	// Pin connected to DS
 
 // Queue and size
 int qSize   = 6;
