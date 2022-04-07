@@ -1,2 +1,2 @@
-# M242-Arduino
+# M242-Arduino [![CodeFactor](https://www.codefactor.io/repository/github/chrisoco/m242-arduino/badge)](https://www.codefactor.io/repository/github/chrisoco/m242-arduino)
 Die Projektarbeit steht im Zentrum des Moduls 242 und erfolgt im Anschluss an die Erarbeitung der Theorie zu diesem Modul. Die IPERKA-Vorgehensweise zeigt exemplarisch, wie ein kleines Informatik-Projekt strukturiert und sauber ausgeführt werden kann.  Die Projektarbeit wird für Sie als Kompetenznachweis (Leistungsbeurteilung) gewertet.
